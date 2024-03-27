@@ -22,7 +22,7 @@ namespace Arrays
                 return -1;
             }
 
-            if (ConstructorTest(4, 0, 0, true) == -1)
+            if (ConstructorTest(4, 0, 5, false) == -1)
             {
                 return -1;
             }
