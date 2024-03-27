@@ -35,7 +35,7 @@ namespace Arrays
         {
             get
             {
-                if (index < 0 || index >= usedSize)
+                if ((index < 0) || (index >= usedSize))
                 {
                     throw new IndexOutOfRangeException("Index out of bounds.");
                 }
@@ -43,17 +43,17 @@ namespace Arrays
             }
             set
             {
-                if (index >= usedSize)
-                {
-                    usedSize = index + 1;
-                    if (index >= allocatedSize)
-                    {
-                        ResizeArray();
-                    }
-                }
                 if (index < 0)
                 {
                     throw new IndexOutOfRangeException("Index out of bounds.");
+                }
+                if (index >= usedSize)
+                {
+                    usedSize = index + 1;
+                    if (index >= storedData.Length)
+                    {
+                        ResizeArray();
+                    }
                 }
                 storedData[index] = value;
             }
@@ -63,12 +63,11 @@ namespace Arrays
         private void ResizeArray()
         {
             int newSize = usedSize * 2;
-            if (newSize < allocatedSize)
+            if (newSize < storedData.Length)
             {
                 return;
             }
             Array.Resize(ref storedData, newSize);
-            allocatedSize = newSize;
         }
 
         public void Add(T newDataObject)
@@ -81,7 +80,7 @@ namespace Arrays
             string result = "";
             for (int i = 0; i < usedSize; ++i)
             {
-                result += i.ToString() + ".| " +  storedData[i] + "\n";
+                result += $"{i}.| {storedData[i]}\n";
             }
             return result;
         }
