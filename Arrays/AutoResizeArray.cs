@@ -21,21 +21,13 @@ namespace Arrays
             get { return usedSize; }
         }
 
-
-        public AutoResizeArray(int allocatedSize = minArraySize)
+        public AutoResizeArray(int size = minArraySize)
         {
-            if (allocatedSize <= 0)
+            if (size< 0)
             {
                 throw new Exception("Invalid array size.");
             }
-            if (allocatedSize < minArraySize)
-            {
-                this.allocatedSize = minArraySize;
-            } else
-            {
-                this.allocatedSize = allocatedSize;
-            }
-            storedData = new T[this.allocatedSize];
+            storedData = new T[size >= minArraySize ? size : minArraySize];
             usedSize = 0;
         }
 
