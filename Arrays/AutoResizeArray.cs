@@ -7,11 +7,11 @@ namespace Arrays
 
         private const int minArraySize = 5;
 
-        private int allocatedSize;
+        private T[] storedData;
 
         public int AllocatedSize
         {
-            get { return allocatedSize; }
+            get { return storedData.Length; }
         }
 
         private int usedSize;
@@ -21,7 +21,6 @@ namespace Arrays
             get { return usedSize; }
         }
 
-        private T[] storedData;
 
         public AutoResizeArray(int allocatedSize = minArraySize)
         {
